@@ -4,10 +4,14 @@ import {
   Container,
   Drawer,
   Grid,
+  IconButton,
   Toolbar,
   Typography,
 } from "@mui/material";
+import MenuIcon from "@mui/icons-material/Menu";
+import Link from "next/link";
 import React, { useState } from "react";
+import Menu from "./Menu";
 
 function MenuDrawer({ children, open, toggleMenu }) {
   return (
@@ -32,7 +36,9 @@ const HomeAppBar = () => {
           <Toolbar>
             <Grid container>
               <Grid item xs={6}>
-                <Typography variant="h6">Michael</Typography>
+                <Link href="/">
+                  <Typography variant="h6">Michael</Typography>
+                </Link>
               </Grid>
               <Grid
                 item
@@ -40,9 +46,11 @@ const HomeAppBar = () => {
                 display={{ xs: "flex", md: "none" }}
                 justifyContent="flex-end"
               >
-                <Typography variant="h6" onClick={toggleMenu}>
-                  Menu
-                </Typography>
+                <IconButton onClick={toggleMenu}>
+                  <MenuIcon sx={{
+                    color: "#fafafa"
+                  }} />
+                </IconButton>
               </Grid>
             </Grid>
           </Toolbar>
@@ -50,14 +58,7 @@ const HomeAppBar = () => {
       </AppBar>
 
       <MenuDrawer open={menuOpen} toggleMenu={toggleMenu}>
-        <Container sx={{ width: "100vw" }}>
-          <Box display="flex" justifyContent="space-between">
-            <Typography variant="h6">Michael</Typography>
-            <Typography onClick={toggleMenu} variant="h6">
-              Xlose
-            </Typography>
-          </Box>
-        </Container>
+        <Menu toggleMenu={toggleMenu} />
       </MenuDrawer>
     </>
   );
