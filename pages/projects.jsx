@@ -1,4 +1,4 @@
-import { request } from "../../lib/datocms";
+import { request } from "../lib/datocms";
 import React from "react";
 import {
   Button,
@@ -21,6 +21,7 @@ const PROJECTS_QUERY = `query Project {
     _status
     _firstPublishedAt
     about
+    slug
     preview {
       responsiveImage(imgixParams: {fit: crop, w: 300, h: 300, auto: format}) {
         srcSet
@@ -54,14 +55,20 @@ const Projects = ({ data }) => {
   const { allProjects } = data;
   return (
     <Grid container>
-      {allProjects.map(({ name, about, preview }, index) => (
-        <ProjectItem name={name} about={about} preview={preview} key={index} />
+      {allProjects.map(({ name, about, preview, slug }, index) => (
+        <ProjectItem
+          name={name}
+          about={about}
+          preview={preview}
+          slug={slug}
+          key={index}
+        />
       ))}
     </Grid>
   );
 };
 
-const ProjectItem = ({ name, about, preview }) => {
+const ProjectItem = ({ name, about, preview, slug }) => {
   return (
     <Grid item>
       <Card>
@@ -78,7 +85,10 @@ const ProjectItem = ({ name, about, preview }) => {
               <LanguageOutlined color="secondary" />
             </IconButton>
           </Link>
-          <Button variant="secondary">See More</Button>
+          {console.log(slug)}
+          <Link href={`/project/${slug}`} passHref>
+            <Button variant="secondary">See More</Button>
+          </Link>
         </CardActions>
       </Card>
     </Grid>
