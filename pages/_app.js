@@ -1,21 +1,21 @@
-import { CssBaseline, ThemeProvider } from "@mui/material";
+import { Container, CssBaseline, ThemeProvider } from "@mui/material";
 import Head from "next/head";
 import React from "react";
+import Footer from "../components/Footer";
 import HomeAppBar from "../components/HomeAppBar";
 import "../styles/globals.css";
-import { theme } from "../styles/styles";
+import { darkTheme, theme } from "../styles/styles";
 
 function MyApp({ Component, pageProps }) {
   return (
     <>
-    <Head>
-      
-    </Head>
-      <ThemeProvider theme={theme}>
-        <CssBaseline />
+      <CssBaseline />
+      <ThemeProvider theme={darkTheme}>
         <HomeAppBar />
-
-        <Component {...pageProps} />
+        <Container>
+          <Component {...pageProps} />
+          <Footer />
+        </Container>
       </ThemeProvider>
     </>
   );

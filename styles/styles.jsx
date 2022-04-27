@@ -1,16 +1,13 @@
 import { createTheme, Link, styled, Typography } from "@mui/material";
 
-const themeOptions = {
+const themeOptions = (mode = "light") => ({
   palette: {
-    type: "light",
+    mode,
     primary: {
       main: "#ef018a",
     },
     secondary: {
       main: "#37a988",
-    },
-    background: {
-      default: "#fafafa",
     },
   },
   typography: {
@@ -34,9 +31,10 @@ const themeOptions = {
       fontFamily: "Lobster",
     },
   },
-};
+});
 
-export const theme = createTheme(themeOptions);
+export const theme = createTheme(themeOptions());
+export const darkTheme = createTheme(themeOptions("dark"));
 
 export const MenuLink = styled(Link)(({ theme }) => ({
   textDecoration: "none",
@@ -44,6 +42,5 @@ export const MenuLink = styled(Link)(({ theme }) => ({
 }));
 
 export const MenuText = styled(Typography)(({ theme }) => ({
-    fontWeight: "bolder"
+  fontWeight: "bolder",
 }));
-

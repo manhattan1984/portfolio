@@ -1,18 +1,11 @@
-import { Box, Button, Container, IconButton, Typography } from "@mui/material";
-import GitHubIcon from "@mui/icons-material/GitHub";
+import { Box, IconButton, Typography } from "@mui/material";
+import { Instagram, GitHub } from "@mui/icons-material";
 import Link from "next/link";
-import { Instagram } from "@mui/icons-material";
+import React from "react";
 
-export default function Home() {
+export default function Footer() {
   return (
-    <Container>
-      <Typography variant="h3" my={4}>
-        Web Developer, Programmer <br /> & Ethical Hacker
-      </Typography>
-      <Link href="/projects">
-        <Button>See My Projects</Button>
-      </Link>
-
+    <>
       <Box my={4}>
         <Typography variant="h4">Contact Me!</Typography>
         <Typography variant="h2" color="secondary">
@@ -23,16 +16,14 @@ export default function Home() {
           @gmail.com
         </Typography>
       </Box>
-
       <Box my={4}>
         <Typography>Michael Jackson</Typography>
-        <Typography>Web Developer & Ethical Hacker</Typography>
+        <Typography>Web Developer, Programmer<br/> & Ethical Hacker</Typography>
       </Box>
-
       <Box my={4}>
         <Link href="https://www.github.com/manhattan1984" passHref>
           <IconButton>
-            <GitHubIcon color="primary" />
+            <GitHub color="primary" />
           </IconButton>
         </Link>
         <Link href="https://www.instagram.com/mikkimanhattan" passHref>
@@ -41,6 +32,6 @@ export default function Home() {
           </IconButton>
         </Link>
       </Box>
-    </Container>
+    </>
   );
 }
