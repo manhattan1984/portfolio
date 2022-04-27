@@ -36,7 +36,7 @@ const HomeAppBar = () => {
           <Toolbar>
             <Grid container>
               <Grid item xs={6}>
-                <Link href="/">
+                <Link href="/" passHref>
                   <Typography variant="h6">Michael</Typography>
                 </Link>
               </Grid>

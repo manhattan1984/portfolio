@@ -28,8 +28,8 @@ const Menu = ({ toggleMenu }) => {
           <Link href="/" passHref>
             <MenuLink onClick={toggleMenu}>HOME</MenuLink>
           </Link>
-          <Link href="/work" passHref>
-            <MenuLink onClick={toggleMenu}>WORK</MenuLink>
+          <Link href="/projects" passHref>
+            <MenuLink onClick={toggleMenu}>PROJECTS</MenuLink>
           </Link>
           <Link href="/about" passHref>
             <MenuLink onClick={toggleMenu}>ABOUT</MenuLink>

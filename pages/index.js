@@ -9,8 +9,8 @@ export default function Home() {
       <Typography variant="h3" my={4}>
         Web Developer, Programmer <br /> & Ethical Hacker
       </Typography>
-      <Link href="/work">
-        <Button>See My Works</Button>
+      <Link href="/projects">
+        <Button>See My Projects</Button>
       </Link>
 
       <Box my={4}>
@@ -30,12 +30,12 @@ export default function Home() {
       </Box>
 
       <Box my={4}>
-        <Link href="https://www.github.com/manhattan1984">
+        <Link href="https://www.github.com/manhattan1984" passHref>
           <IconButton>
             <GitHubIcon color="primary" />
           </IconButton>
         </Link>
-        <Link href="https://www.instagram.com/mikkimanhattan">
+        <Link href="https://www.instagram.com/mikkimanhattan" passHref>
           <IconButton>
             <Instagram color="primary" />
           </IconButton>
