@@ -10,9 +10,9 @@ function MyApp({ Component, pageProps }) {
   return (
     <>
       <ThemeProvider theme={theme}>
-      <CssBaseline />
-        <HomeAppBar />
+        <CssBaseline />
         <Container>
+          <HomeAppBar />
           <Component {...pageProps} />
           <Footer />
         </Container>

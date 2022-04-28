@@ -8,7 +8,7 @@ export default function Footer() {
     <>
       <Box my={4}>
         <Typography variant="h4">Contact Me!</Typography>
-        <Typography variant="h2" color="secondary">
+        <Typography variant="h3" color="secondary">
           mikki
           <br />
           manhattan

@@ -54,7 +54,7 @@ export async function getStaticProps() {
 const Projects = ({ data }) => {
   const { allProjects } = data;
   return (
-    <Grid container my={4}>
+    <Grid container my={4} spacing={4}>
       {allProjects.map(({ name, about, preview, slug }, index) => (
         <ProjectItem
           name={name}

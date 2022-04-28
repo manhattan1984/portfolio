@@ -26,10 +26,10 @@ const About = ({ data }) => {
   return (
     <>
       <Typography variant="h3" my={4}>
-        Hello, I`&apos`m Michael
+        Hello, I&apos;m Michael
       </Typography>
       <Typography variant="subtitle1" my={4}>
-        But you can call me `&ldquo;`Greatness`&ldquo;`
+        But you can call me &ldquo;Greatness&ldquo;
       </Typography>
 
       <Typography variant="h4" my={4}>
@@ -53,7 +53,7 @@ const About = ({ data }) => {
   );
 };
 
-const Service = ({ name}) => {
+const Service = ({ name }) => {
   return (
     <Grid item xs={12}>
       <Typography variant="subtitle1">{name}</Typography>

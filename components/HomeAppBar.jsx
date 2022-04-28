@@ -1,6 +1,7 @@
 import {
   AppBar,
   Box,
+  Button,
   Container,
   Drawer,
   Grid,
@@ -11,7 +12,7 @@ import {
 import MenuIcon from "@mui/icons-material/Menu";
 import Link from "next/link";
 import React, { useState } from "react";
-import Menu from "./Menu";
+import Menu, { LINKS } from "./Menu";
 
 function MenuDrawer({ children, open, toggleMenu }) {
   return (
@@ -31,31 +32,36 @@ const HomeAppBar = () => {
   };
   return (
     <>
-      <AppBar position="static">
-        <Container maxWidth="xl">
-          <Toolbar>
-            <Grid container>
-              <Grid item xs={6}>
-                <Link href="/" passHref>
-                  <Typography variant="h6">Michael</Typography>
-                </Link>
-              </Grid>
-              <Grid
-                item
-                xs={6}
-                display={{ xs: "flex", md: "none" }}
-                justifyContent="flex-end"
-              >
-                <IconButton onClick={toggleMenu}>
-                  <MenuIcon sx={{
-                    color: "#fafafa"
-                  }} />
-                </IconButton>
-              </Grid>
-            </Grid>
-          </Toolbar>
-        </Container>
-      </AppBar>
+      <Grid container my={4} position="sticky">
+        <Grid item xs={6} md={4}>
+          <Link href="/" passHref>
+            <Typography variant="h6" color="primary">
+              Michael
+            </Typography>
+          </Link>
+        </Grid>
+        {/* Mobile */}
+        <Grid
+          item
+          xs={6}
+          display={{ xs: "flex", md: "none" }}
+          justifyContent="flex-end"
+        >
+          <IconButton onClick={toggleMenu}>
+            <MenuIcon color="primary" />
+          </IconButton>
+        </Grid>
+        {/* Larger */}
+        <Grid item md={8} display={{ xs: "none", md: "flex" }}>
+          <Grid container justifyContent="flex-end">
+            {LINKS.map(({ name, link }) => (
+              <Link href={link} passHref>
+                <Button>{name}</Button>
+              </Link>
+            ))}
+          </Grid>
+        </Grid>
+      </Grid>
 
       <MenuDrawer open={menuOpen} toggleMenu={toggleMenu}>
         <Menu toggleMenu={toggleMenu} />
