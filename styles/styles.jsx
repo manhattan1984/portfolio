@@ -1,4 +1,5 @@
 import { createTheme, Link, styled, Typography } from "@mui/material";
+import { grey } from "@mui/material/colors";
 
 const themeOptions = (mode = "light") => ({
   palette: {
@@ -36,9 +37,11 @@ const themeOptions = (mode = "light") => ({
 export const theme = createTheme(themeOptions());
 export const darkTheme = createTheme(themeOptions("dark"));
 
-export const MenuLink = styled(Link)(({ theme }) => ({
+export const MenuLink = styled(Typography)(({ theme }) => ({
   textDecoration: "none",
-  fontSize: "4rem",
+  fontSize: "3rem",
+  cursor: "pointer",
+  color: theme.palette.primary.main
 }));
 
 export const MenuText = styled(Typography)(({ theme }) => ({

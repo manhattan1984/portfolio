@@ -9,8 +9,8 @@ import { darkTheme, theme } from "../styles/styles";
 function MyApp({ Component, pageProps }) {
   return (
     <>
+      <ThemeProvider theme={theme}>
       <CssBaseline />
-      <ThemeProvider theme={darkTheme}>
         <HomeAppBar />
         <Container>
           <Component {...pageProps} />

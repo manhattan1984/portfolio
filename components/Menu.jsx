@@ -34,8 +34,11 @@ const Menu = ({ toggleMenu }) => {
           <Link href="/about" passHref>
             <MenuLink onClick={toggleMenu}>ABOUT</MenuLink>
           </Link>
-          <Link href="/contact" passHref>
+          {/* <Link href="/contact" passHref>
             <MenuLink onClick={toggleMenu}>CONTACT</MenuLink>
+          </Link> */}
+          <Link href="/books" passHref>
+            <MenuLink onClick={toggleMenu}>BOOKS</MenuLink>
           </Link>
         </Grid>
 

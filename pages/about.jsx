@@ -1,14 +1,63 @@
-import { ThemeProvider } from "@mui/material";
+import { Button, Grid, Link, Typography } from "@mui/material";
 import React from "react";
-import { darkTheme } from "../styles/styles";
+import { request } from "../lib/datocms";
 
-const About = () => {
+export async function getStaticProps() {
+  const query = `{
+    allServices {
+      name
+    }
+    allHobbies {
+      name
+    }
+  }`;
+
+  const data = await request({
+    query,
+  });
+
+  return {
+    props: { data },
+  };
+}
+
+const About = ({ data }) => {
+  const { allServices, allHobbies } = data;
   return (
     <>
-      <ThemeProvider theme={darkTheme}>
-        <div>About</div>
-      </ThemeProvider>
+      <Typography variant="h3" my={4}>
+        Hello, I'm Michael
+      </Typography>
+      <Typography variant="subtitle1" my={4}>
+        But you can call me "Greatness"
+      </Typography>
+
+      <Typography variant="h4" my={4}>
+        I Can ...
+      </Typography>
+      <Grid container spacing={4}>
+        {allServices.map(({ name }, index) => (
+          <Service name={name} key={index} />
+        ))}
+      </Grid>
+
+      <Typography variant="h4" my={4}>
+        I Love To ...
+      </Typography>
+      <Grid container spacing={4}>
+        {allHobbies.map(({ name }, index) => (
+          <Service name={name} key={index} />
+        ))}
+      </Grid>
     </>
+  );
+};
+
+const Service = ({ name}) => {
+  return (
+    <Grid item xs={12}>
+      <Typography variant="subtitle1">{name}</Typography>
+    </Grid>
   );
 };
 

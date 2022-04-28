@@ -32,7 +32,7 @@ export async function getStaticProps({ params }) {
         name
         about
         screenshots {
-          responsiveImage(imgixParams: { fit: crop, w: 300, h: 300 }){
+          responsiveImage(imgixParams: {fit: crop, w: 300, h: 300, auto: format}){
             ...responsiveImageFragment
           }
         }
