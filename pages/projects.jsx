@@ -74,7 +74,7 @@ const ProjectItem = ({ name, about, preview, slug }) => {
       <Card sx={{maxWidth: 345}}>
         <CardContent>
           <CardMedia>
-            <Image data={preview.responsiveImage} />
+            <Image data={preview.responsiveImage} alt="project image" />
           </CardMedia>
           <Typography variant="h6">{name}</Typography>
           <Typography variant="body1">{about}</Typography>

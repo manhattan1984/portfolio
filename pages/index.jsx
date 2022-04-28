@@ -7,7 +7,7 @@ export default function Home() {
       <Typography variant="h3" my={4}>
         Web Developer, Programmer <br /> & Ethical Hacker
       </Typography>
-      <Link href="/projects">
+      <Link href="/projects" passHref>
         <Button>See My Projects</Button>
       </Link>
     </>

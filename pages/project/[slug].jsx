@@ -77,7 +77,7 @@ const ProjectInfo = ({ data }) => {
       <ImageList cols={1} gap={16} my={4}>
         {screenshots.map((image, index) => (
           <ImageListItem key={index}>
-            <Image data={image.responsiveImage} />
+            <Image data={image.responsiveImage} alt="project screenshot" />
           </ImageListItem>
         ))}
       </ImageList>

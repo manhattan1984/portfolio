@@ -4,7 +4,7 @@ import { Image } from "react-datocms";
 import { request } from "../lib/datocms";
 import { responsiveImageFragment } from "../lib/fragments";
 
-export async function getStaticProps() {
+export async function getServerSideProps() {
   const query = `
     {
         allBooks {
@@ -38,7 +38,7 @@ const Book = ({ name, cover, summary }) => {
     <Grid item>
       <Grid container direction="row">
         <Grid item xs={6} md={4}>
-          <Image data={cover.responsiveImage} />{" "}
+          <Image data={cover.responsiveImage} alt="A Book"/>{" "}
         </Grid>
         <Grid item xs={6} md={8}>
           <Typography variant="h6">{name}</Typography>

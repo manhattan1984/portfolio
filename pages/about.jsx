@@ -2,7 +2,7 @@ import { Button, Grid, Link, Typography } from "@mui/material";
 import React from "react";
 import { request } from "../lib/datocms";
 
-export async function getStaticProps() {
+export async function getServerSideProps() {
   const query = `{
     allServices {
       name
@@ -26,10 +26,10 @@ const About = ({ data }) => {
   return (
     <>
       <Typography variant="h3" my={4}>
-        Hello, I'm Michael
+        Hello, I`&apos`m Michael
       </Typography>
       <Typography variant="subtitle1" my={4}>
-        But you can call me "Greatness"
+        But you can call me `&ldquo;`Greatness`&ldquo;`
       </Typography>
 
       <Typography variant="h4" my={4}>
