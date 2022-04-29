@@ -22,16 +22,30 @@ export const LINKS = [
     link: "/books",
   },
 ];
-const Menu = ({ toggleMenu }) => {
+const Menu = ({ toggleMenu, setActive, active }) => {
   return (
     <Container sx={{ width: "100vw" }}>
       <Grid container my={4}>
         <Grid container justifyContent="space-between">
-          <Typography variant="h6">Michael</Typography>
+          <Grid item>
+            <Link href="/" passHref>
+              <Typography
+                sx={{
+                  cursor: "pointer",
+                }}
+                variant="h6"
+                onClick={toggleMenu}
+              >
+                Michael
+              </Typography>
+            </Link>
+          </Grid>
 
-          <IconButton onClick={toggleMenu}>
-            <CloseIcon />
-          </IconButton>
+          <Grid item>
+            <IconButton onClick={toggleMenu}>
+              <CloseIcon />
+            </IconButton>
+          </Grid>
         </Grid>
 
         <Grid
@@ -42,9 +56,21 @@ const Menu = ({ toggleMenu }) => {
           my={4}
         >
           {LINKS.map(({ name, link }, index) => (
-            <Grid item>
-              <Link href={link} passHref key={index}>
-                <MenuLink onClick={toggleMenu}>{name}</MenuLink>
+            <Grid item key={index}>
+              <Link href={link} passHref>
+                <MenuLink
+                  sx={{
+                    ...(name === active && {
+                      borderBottom: 1,
+                    }),
+                  }}
+                  onClick={() => {
+                    toggleMenu();
+                    setActive(name);
+                  }}
+                >
+                  {name}
+                </MenuLink>
               </Link>
             </Grid>
           ))}

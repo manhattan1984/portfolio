@@ -26,16 +26,30 @@ function MenuDrawer({ children, open, toggleMenu }) {
 
 const HomeAppBar = () => {
   const [menuOpen, setMenuOpen] = useState(false);
+  const [active, setActive] = useState("home");
 
   const toggleMenu = () => {
     setMenuOpen(!menuOpen);
   };
   return (
     <>
-      <Grid container my={4} position="sticky">
+      <Grid
+        container
+        position="sticky"
+        sx={{
+          top: 20,
+          zIndex: "tooltip",
+        }}
+      >
         <Grid item xs={6} md={4}>
           <Link href="/" passHref>
-            <Typography variant="h6" color="primary">
+            <Typography
+              sx={{
+                cursor: "pointer",
+              }}
+              variant="h6"
+              color="primary"
+            >
               Michael
             </Typography>
           </Link>
@@ -55,8 +69,20 @@ const HomeAppBar = () => {
         <Grid item md={8} display={{ xs: "none", md: "flex" }}>
           <Grid container justifyContent="flex-end">
             {LINKS.map(({ name, link }) => (
-              <Link href={link} passHref>
-                <Button>{name}</Button>
+              <Link href={link} key={name} passHref>
+                <Button
+                  onClick={() => {
+                    setActive(name);
+                  }}
+                  sx={{
+                    ...(name === active && {
+                      border: 1,
+                      // borderColor: 'secondary.main'
+                    }),
+                  }}
+                >
+                  {name}
+                </Button>
               </Link>
             ))}
           </Grid>
@@ -64,7 +90,7 @@ const HomeAppBar = () => {
       </Grid>
 
       <MenuDrawer open={menuOpen} toggleMenu={toggleMenu}>
-        <Menu toggleMenu={toggleMenu} />
+        <Menu toggleMenu={toggleMenu} setActive={setActive} active={active} />
       </MenuDrawer>
     </>
   );

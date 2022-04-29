@@ -36,12 +36,12 @@ export async function getServerSideProps() {
 const Book = ({ name, cover, summary }) => {
   return (
     <Grid item>
-      <Grid container direction="row">
-        <Grid item xs={6} md={4}>
+      <Grid container spacing={4}>
+        <Grid item>
           <Image data={cover.responsiveImage} alt="A Book"/>{" "}
         </Grid>
-        <Grid item xs={6} md={8}>
-          <Typography variant="h6">{name}</Typography>
+        <Grid item>
+          <Typography variant="h6" my={2}>{name}</Typography>
           <Typography variant="subtitle1">{summary}</Typography>
         </Grid>
       </Grid>

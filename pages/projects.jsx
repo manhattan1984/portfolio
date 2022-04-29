@@ -18,10 +18,9 @@ const PROJECTS_QUERY = `query Project {
   allProjects {
     id
     name
-    _status
-    _firstPublishedAt
     about
     slug
+    link
     preview {
       responsiveImage(imgixParams: {fit: crop, w: 300, h: 300, auto: format}) {
         srcSet
@@ -39,7 +38,7 @@ const PROJECTS_QUERY = `query Project {
   }
 }`;
 
-export async function getStaticProps() {
+export async function getServerSideProps() {
   const data = await request({
     query: PROJECTS_QUERY,
   });
@@ -55,23 +54,24 @@ const Projects = ({ data }) => {
   const { allProjects } = data;
   return (
     <Grid container my={4} spacing={4}>
-      {allProjects.map(({ name, about, preview, slug }, index) => (
+      {allProjects.map(({ name, about, preview, slug, link }, index) => (
         <ProjectItem
           name={name}
           about={about}
           preview={preview}
           slug={slug}
           key={index}
+          link={link}
         />
       ))}
     </Grid>
   );
 };
 
-const ProjectItem = ({ name, about, preview, slug }) => {
+const ProjectItem = ({ name, about, preview, link }) => {
   return (
     <Grid item>
-      <Card sx={{maxWidth: 345}}>
+      <Card sx={{ maxWidth: 345 }}>
         <CardContent>
           <CardMedia>
             <Image data={preview.responsiveImage} alt="project image" />
@@ -80,14 +80,10 @@ const ProjectItem = ({ name, about, preview, slug }) => {
           <Typography variant="body1">{about}</Typography>
         </CardContent>
         <CardActions>
-          <Link href="https://skycryptotrades.com/" passHref>
+          <Link href={link} passHref>
             <IconButton>
               <LanguageOutlined color="secondary" />
             </IconButton>
-          </Link>
-          {console.log(slug)}
-          <Link href={`/project/${slug}`} passHref>
-            <Button variant="secondary">See More</Button>
           </Link>
         </CardActions>
       </Card>
