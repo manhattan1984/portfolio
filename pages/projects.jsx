@@ -38,7 +38,7 @@ const PROJECTS_QUERY = `query Project {
   }
 }`;
 
-export async function getServerSideProps() {
+export async function getStaticProps() {
   const data = await request({
     query: PROJECTS_QUERY,
   });

@@ -13,6 +13,11 @@ import MenuIcon from "@mui/icons-material/Menu";
 import Link from "next/link";
 import React, { useState } from "react";
 import Menu, { LINKS } from "./Menu";
+import { useRouter } from "next/router";
+
+function setActive(router, link) {
+  return router.pathname == link ? { borderBottom: 1, borderRadius: 0 } : "";
+}
 
 function MenuDrawer({ children, open, toggleMenu }) {
   return (
@@ -25,8 +30,8 @@ function MenuDrawer({ children, open, toggleMenu }) {
 }
 
 const HomeAppBar = () => {
+  const router = useRouter();
   const [menuOpen, setMenuOpen] = useState(false);
-  const [active, setActive] = useState("home");
 
   const toggleMenu = () => {
     setMenuOpen(!menuOpen);
@@ -37,8 +42,10 @@ const HomeAppBar = () => {
         container
         position="sticky"
         sx={{
-          top: 20,
+          top: 30,
           zIndex: "tooltip",
+          ...(menuOpen ? { display: "none" } : { display: "flex" }),
+         
         }}
       >
         <Grid item xs={6} md={4}>
@@ -71,14 +78,8 @@ const HomeAppBar = () => {
             {LINKS.map(({ name, link }) => (
               <Link href={link} key={name} passHref>
                 <Button
-                  onClick={() => {
-                    setActive(name);
-                  }}
                   sx={{
-                    ...(name === active && {
-                      border: 1,
-                      // borderColor: 'secondary.main'
-                    }),
+                    ...setActive(router, link),
                   }}
                 >
                   {name}
@@ -90,7 +91,7 @@ const HomeAppBar = () => {
       </Grid>
 
       <MenuDrawer open={menuOpen} toggleMenu={toggleMenu}>
-        <Menu toggleMenu={toggleMenu} setActive={setActive} active={active} />
+        <Menu toggleMenu={toggleMenu} setActive={setActive} />
       </MenuDrawer>
     </>
   );

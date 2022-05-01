@@ -2,7 +2,7 @@ import { Button, Grid, Link, Typography } from "@mui/material";
 import React from "react";
 import { request } from "../lib/datocms";
 
-export async function getServerSideProps() {
+export async function getStaticProps() {
   const query = `{
     allServices {
       name

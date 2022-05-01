@@ -3,6 +3,7 @@ import CloseIcon from "@mui/icons-material/Close";
 import Link from "next/link";
 import React from "react";
 import { MenuLink, MenuText } from "../styles/styles";
+import { useRouter } from "next/router";
 
 export const LINKS = [
   {
@@ -22,9 +23,10 @@ export const LINKS = [
     link: "/books",
   },
 ];
-const Menu = ({ toggleMenu, setActive, active }) => {
+const Menu = ({ toggleMenu, setActive }) => {
+  const router = useRouter();
   return (
-    <Container sx={{ width: "100vw" }}>
+    <Container sx={{ width: "100vw", zIndex: "tooltip" }}>
       <Grid container my={4}>
         <Grid container justifyContent="space-between">
           <Grid item>
@@ -60,13 +62,10 @@ const Menu = ({ toggleMenu, setActive, active }) => {
               <Link href={link} passHref>
                 <MenuLink
                   sx={{
-                    ...(name === active && {
-                      borderBottom: 1,
-                    }),
+                    ...setActive(router, link),
                   }}
                   onClick={() => {
                     toggleMenu();
-                    setActive(name);
                   }}
                 >
                   {name}
