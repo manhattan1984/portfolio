@@ -76,15 +76,9 @@ const Menu = ({ toggleMenu, setActive }) => {
         </Grid>
 
         <Grid container direction="column" mt={1}>
-          <MenuText color="secondary" variant="subtitle1">
-            Currently Freelancer
-          </MenuText>
-          <MenuText color="secondary" variant="subtitle1">
-            Based In Port Harcourt
-          </MenuText>
-          <MenuText color="secondary" variant="subtitle1">
-            Nigeria
-          </MenuText>
+          <MenuText variant="subtitle1">Currently Freelancer</MenuText>
+          <MenuText variant="subtitle1">Based In Port Harcourt</MenuText>
+          <MenuText variant="subtitle1">Nigeria</MenuText>
         </Grid>
       </Grid>
     </Container>

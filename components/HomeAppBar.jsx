@@ -38,7 +38,7 @@ const HomeAppBar = () => {
   };
   return (
     <>
-      <AppBar container position="sticky" sx={{bgcolor: "white"}}>
+      <AppBar position="sticky" sx={{bgcolor: "white"}}>
         <Toolbar>
           <Grid container>
             <Grid item xs={6} md={4}>

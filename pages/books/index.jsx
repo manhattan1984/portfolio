@@ -5,7 +5,7 @@ import { Image } from "react-datocms";
 import { request } from "../../lib/datocms";
 import { responsiveImageFragment } from "../../lib/fragments";
 
-export async function getStaticProps() {
+export async function getServerSideProps() {
   const query = `
     {
         allBooks {
@@ -13,7 +13,7 @@ export async function getStaticProps() {
           summary
           author
           category {
-            slug
+            id
             name
           }
           cover {
@@ -21,6 +21,11 @@ export async function getStaticProps() {
                 ...responsiveImageFragment
             }
           }
+        }
+
+        allCategories {
+          id
+          name
         }
       }
 
@@ -53,28 +58,29 @@ const Book = ({ name, cover, summary, category }) => {
             >
               {name}
             </Typography>
-            {/* <Link href={`books/${category.slug}`} passHref> */}
-              <Button color="secondary">{category.name}</Button>
-            {/* </Link> */}
+            {category.id ? (
+              <Link href={`books/${category.id}`} passHref>
+                <Button color="secondary">{category.name}</Button>
+              </Link>
+            ) : null}
           </Box>
           <Image data={cover.responsiveImage} alt="A Book" />{" "}
           <Typography variant="subtitle1" sx={{ width: "100%" }}>
             {summary}
           </Typography>
         </Grid>
-        <Grid item></Grid>
       </Grid>
     </Grid>
   );
 };
 
-const Books = ({ data }) => {
+export const Books = ({ data, title }) => {
   const { allBooks } = data;
 
   return (
     <>
       <Typography variant="h3" my={4}>
-        Books That Influenced Me Most
+        {title}
       </Typography>
       <Grid container spacing={4}>
         {allBooks.map(({ name, cover, summary, category }, index) => (
@@ -91,4 +97,31 @@ const Books = ({ data }) => {
   );
 };
 
-export default Books;
+const Index = ({ data }) => {
+  const { allCategories } = data;
+  return (
+    <Grid container spacing={8}>
+      <Grid item>
+        <Typography variant="h5" my={4}>These Are The Books That Have Inspired Me Most</Typography>
+        <Books
+          data={data}
+        />
+      </Grid>
+
+      <Grid item justifyContent="flex-end">
+        <Typography variant="h6">Categories</Typography>
+        <Grid container>
+          {allCategories.map(({ name, id, index }) => (
+            <Grid item xs={12}>
+              <Link href={`books/${id}`} passHref>
+                <Button color="secondary">{name}</Button>
+              </Link>
+            </Grid>
+          ))}
+        </Grid>
+      </Grid>
+    </Grid>
+  );
+};
+
+export default Index;
