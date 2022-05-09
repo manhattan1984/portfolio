@@ -13,30 +13,24 @@ import {
 import { LanguageOutlined } from "@mui/icons-material";
 import Link from "next/link";
 import { Image } from "react-datocms";
+import { responsiveImageFragment } from "../lib/fragments";
 
 const PROJECTS_QUERY = `query Project {
-  allProjects {
-    id
-    name
-    about
-    slug
-    link
-    preview {
-      responsiveImage(imgixParams: {fit: crop, w: 300, h: 300, auto: format}) {
-        srcSet
-        webpSrcSet
-        sizes
-        src
-        width
-        height
-        aspectRatio
-        alt
-        title
-        base64
+    allProjects {
+      id
+      name
+      about
+      slug
+      link
+      preview {
+        responsiveImage(imgixParams: {fit: crop, w: 300, h: 300, auto: format}){
+          ...responsiveImageFragment
+        }
       }
     }
-  }
-}`;
+  } 
+${responsiveImageFragment}
+`;
 
 export async function getStaticProps() {
   const data = await request({

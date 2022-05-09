@@ -38,57 +38,52 @@ const HomeAppBar = () => {
   };
   return (
     <>
-      <Grid
-        container
-        position="sticky"
-        sx={{
-          top: 30,
-          zIndex: "tooltip",
-          ...(menuOpen ? { display: "none" } : { display: "flex" }),
-         
-        }}
-      >
-        <Grid item xs={6} md={4}>
-          <Link href="/" passHref>
-            <Typography
-              sx={{
-                cursor: "pointer",
-              }}
-              variant="h6"
-              color="primary"
-            >
-              Michael
-            </Typography>
-          </Link>
-        </Grid>
-        {/* Mobile */}
-        <Grid
-          item
-          xs={6}
-          display={{ xs: "flex", md: "none" }}
-          justifyContent="flex-end"
-        >
-          <IconButton onClick={toggleMenu}>
-            <MenuIcon color="primary" />
-          </IconButton>
-        </Grid>
-        {/* Larger */}
-        <Grid item md={8} display={{ xs: "none", md: "flex" }}>
-          <Grid container justifyContent="flex-end">
-            {LINKS.map(({ name, link }) => (
-              <Link href={link} key={name} passHref>
-                <Button
+      <AppBar container position="sticky" sx={{bgcolor: "Background"}}>
+        <Toolbar>
+          <Grid container>
+            <Grid item xs={6} md={4}>
+              <Link href="/" passHref>
+                <Typography
                   sx={{
-                    ...setActive(router, link),
+                    cursor: "pointer",
                   }}
+                  variant="h6"
+                  color="primary"
                 >
-                  {name}
-                </Button>
+                  Michael
+                </Typography>
               </Link>
-            ))}
+            </Grid>
+            {/* Mobile */}
+            <Grid
+              item
+              xs={6}
+              display={{ xs: "flex", md: "none" }}
+              justifyContent="flex-end"
+            >
+              <IconButton onClick={toggleMenu}>
+                <MenuIcon color="primary" />
+              </IconButton>
+            </Grid>
+            {/* Larger */}
+            <Grid item md={8} display={{ xs: "none", md: "flex" }}>
+              <Grid container justifyContent="flex-end">
+                {LINKS.map(({ name, link }) => (
+                  <Link href={link} key={name} passHref>
+                    <Button
+                      sx={{
+                        ...setActive(router, link),
+                      }}
+                    >
+                      {name}
+                    </Button>
+                  </Link>
+                ))}
+              </Grid>
+            </Grid>
           </Grid>
-        </Grid>
-      </Grid>
+        </Toolbar>
+      </AppBar>
 
       <MenuDrawer open={menuOpen} toggleMenu={toggleMenu}>
         <Menu toggleMenu={toggleMenu} setActive={setActive} />

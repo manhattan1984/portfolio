@@ -28,11 +28,13 @@ function MyApp({ Component, pageProps }) {
         {loading ? (
           <Loading />
         ) : (
-          <Container>
+          <>
             <HomeAppBar />
-            <Component {...pageProps} />
-            <Footer />
-          </Container>
+            <Container>
+              <Component {...pageProps} />
+              <Footer />
+            </Container>
+          </>
         )}
       </ThemeProvider>
     </>
