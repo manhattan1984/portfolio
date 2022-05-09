@@ -36,12 +36,14 @@ export async function getServerSideProps({ params }) {
 
 const Category = ({ data }) => {
   const title = data.allBooks[0].category.title;
-  return (
+  return data ? (
     <>
-      <Typography variant="h6" my={4}>{title}</Typography>
+      <Typography variant="h6" my={4}>
+        {title}
+      </Typography>
       <Books data={data} />
     </>
-  );
+  ) : null;
 };
 
 export default Category;

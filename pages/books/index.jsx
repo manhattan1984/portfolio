@@ -112,7 +112,7 @@ const Index = ({ data }) => {
         <Typography variant="h6">Categories</Typography>
         <Grid container>
           {allCategories.map(({ name, id, index }) => (
-            <Grid item xs={12}>
+            <Grid item xs={12} key={index}>
               <Link href={`books/${id}`} passHref>
                 <Button color="secondary">{name}</Button>
               </Link>
