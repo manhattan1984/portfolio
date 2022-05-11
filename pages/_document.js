@@ -9,7 +9,7 @@ const Document = () => {
           href="https://fonts.googleapis.com/css2?family=Lobster&family=Raleway:wght@300&display=swap"
           rel="stylesheet"
         />
-        
+        <link rel="shortcut icon" href="logo.jpeg" />
       </Head>
       <body>
           <Main />

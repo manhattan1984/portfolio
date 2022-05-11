@@ -1,4 +1,5 @@
 import { Typography } from "@mui/material";
+import Head from "next/head";
 import React from "react";
 import { Books } from ".";
 import { request } from "../../lib/datocms";
@@ -35,11 +36,18 @@ export async function getServerSideProps({ params }) {
 }
 
 const Category = ({ data }) => {
-  const title = data.allBooks[0].category.title;
+  const category = data.allBooks[0].category;
   return data ? (
     <>
+      <Head>
+        <title>{category.name} Books | Michael Greatness</title>
+        <meta
+          name="description"
+          content={`These are some of my favorite ${category.name} books. Enjoy!`}
+        />
+      </Head>
       <Typography variant="h6" my={4}>
-        {title}
+        {category.title}
       </Typography>
       <Books data={data} />
     </>

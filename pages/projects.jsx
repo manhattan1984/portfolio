@@ -14,6 +14,7 @@ import { LanguageOutlined } from "@mui/icons-material";
 import Link from "next/link";
 import { Image } from "react-datocms";
 import { responsiveImageFragment } from "../lib/fragments";
+import Head from "next/head";
 
 const PROJECTS_QUERY = `query Project {
     allProjects {
@@ -47,18 +48,27 @@ export async function getStaticProps() {
 const Projects = ({ data }) => {
   const { allProjects } = data;
   return (
-    <Grid container my={4} spacing={4}>
-      {allProjects.map(({ name, about, preview, slug, link }, index) => (
-        <ProjectItem
-          name={name}
-          about={about}
-          preview={preview}
-          slug={slug}
-          key={index}
-          link={link}
+    <>
+      <Head>
+        <title>Projects | Michael Greatness</title>
+        <meta
+          name="description"
+          content="Check Out The Projects I'm Most Proud Of. Contact Me For Beautiful Designs Like These"
         />
-      ))}
-    </Grid>
+      </Head>
+      <Grid container my={4} spacing={4}>
+        {allProjects.map(({ name, about, preview, slug, link }, index) => (
+          <ProjectItem
+            name={name}
+            about={about}
+            preview={preview}
+            slug={slug}
+            key={index}
+            link={link}
+          />
+        ))}
+      </Grid>
+    </>
   );
 };
 

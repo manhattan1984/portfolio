@@ -1,4 +1,5 @@
-import { Box, Grid, Typography } from "@mui/material";
+import { Grid, Typography } from "@mui/material";
+import { motion } from "framer-motion";
 import React from "react";
 
 const Loading = () => {
@@ -17,7 +18,22 @@ const Loading = () => {
         </Typography>
       </Grid>
       <Grid item>
-        <Typography variant="h2" m={4} color="#fff">
+        <Typography
+          variant="h2"
+          m={4}
+          color="#fff"
+          component={motion.div}
+          initial="hidden"
+          animate="visible"
+          variants={{
+            hidden: { opacity: 0 },
+            visible: { opacity: 1 },
+          }}
+          transition={{
+            repeat: Infinity,
+            duration: 2,
+          }}
+        >
           Loading ...
         </Typography>
       </Grid>

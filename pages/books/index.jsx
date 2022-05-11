@@ -1,4 +1,5 @@
 import { Box, Button, Grid, Typography } from "@mui/material";
+import Head from "next/head";
 import Link from "next/link";
 import React from "react";
 import { Image } from "react-datocms";
@@ -45,9 +46,9 @@ export async function getServerSideProps() {
 
 const Book = ({ name, cover, summary, category }) => {
   return (
-    <Grid item md={6}>
+    <Grid item md={6} xs={12}>
       <Grid container spacing={4}>
-        <Grid item>
+        <Grid item width={"100%"}>
           <Box display="flex" justifyContent="space-between">
             <Typography
               variant="subtitle"
@@ -64,7 +65,7 @@ const Book = ({ name, cover, summary, category }) => {
               </Link>
             ) : null}
           </Box>
-          <Image data={cover.responsiveImage} alt="A Book" />{" "}
+          <Image data={cover.responsiveImage} alt={cover.alt} />{" "}
           <Typography variant="subtitle1" sx={{ width: "100%" }}>
             {summary}
           </Typography>
@@ -100,27 +101,36 @@ export const Books = ({ data, title }) => {
 const Index = ({ data }) => {
   const { allCategories } = data;
   return (
-    <Grid container spacing={8}>
-      <Grid item>
-        <Typography variant="h5" my={4}>These Are The Books That Have Inspired Me Most</Typography>
-        <Books
-          data={data}
+    <>
+      <Head>
+        <title>Books | Michael Greatness</title>
+        <meta
+          name="description"
+          content="Get Awesome Book Recommendations Here"
         />
-      </Grid>
+      </Head>
+      <Grid container spacing={8}>
+        <Grid item>
+          <Typography variant="h5" my={4}>
+            These Are The Books That Have Inspired Me Most
+          </Typography>
+          <Books data={data} />
+        </Grid>
 
-      <Grid item justifyContent="flex-end">
-        <Typography variant="h6">Categories</Typography>
-        <Grid container>
-          {allCategories.map(({ name, id, index }) => (
-            <Grid item xs={12} key={index}>
-              <Link href={`books/${id}`} passHref>
-                <Button color="secondary">{name}</Button>
-              </Link>
-            </Grid>
-          ))}
+        <Grid item justifyContent="flex-end">
+          <Typography variant="h6">Categories</Typography>
+          <Grid container>
+            {allCategories.map(({ name, id, index }) => (
+              <Grid item xs={12} key={index}>
+                <Link href={`books/${id}`} passHref>
+                  <Button color="secondary">{name}</Button>
+                </Link>
+              </Grid>
+            ))}
+          </Grid>
         </Grid>
       </Grid>
-    </Grid>
+    </>
   );
 };
 

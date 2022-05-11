@@ -1,11 +1,17 @@
 import { Button, Typography } from "@mui/material";
+import Head from "next/head";
 import Link from "next/link";
-import { useRouter } from "next/router";
-import { useEffect, useState } from "react";
 
 export default function Home() {
   return (
     <>
+      <Head>
+        <title>Home Page | Michael Greatness</title>
+        <meta
+          name="description"
+          content="Check out my projects, contact me and get the best book recommendations"
+        />
+      </Head>
       <Typography variant="h3" my={4}>
         Web Developer, Programmer <br /> & Ethical Hacker
       </Typography>

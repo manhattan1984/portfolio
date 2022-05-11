@@ -1,4 +1,5 @@
 import { Button, Grid, Link, Typography } from "@mui/material";
+import Head from "next/head";
 import React from "react";
 import { request } from "../lib/datocms";
 
@@ -25,6 +26,10 @@ const About = ({ data }) => {
   const { allServices, allHobbies } = data;
   return (
     <>
+      <Head>
+        <title>About | Michael Greatness</title>
+        <meta name="description" content="Find Out More About Me!" />
+      </Head>
       <Typography variant="h3" my={4}>
         Hello, I&apos;m Michael
       </Typography>
